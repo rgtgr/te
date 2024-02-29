@@ -7,23 +7,22 @@ def main():
 
     """
     with open('game.txt', encoding='utf-8') as f, open('game_new.csv', 'w', encoding='utf-8') as ff:
-        fieldnames = f.readline().strip().split('$')
-
-        reader = csv.DictReader(f, delimiter='$', fieldnames=fieldnames)
-        writer = csv.writer(ff, delimiter='$', lineterminator='\n')
+        reader = csv.reader(f, delimiter='$')
+        writer = csv.writer(ff, delimiter=' ', lineterminator='\n')
         counter = 0
         for k in reader:  # Игнорируем строку с названием столбцов
             if counter == 0:
                 counter += 1
                 continue
-            title, name, error, date = k["GameName"], k["characters"], k["nameError"], k["date"]
+            title, name, error, date = k[0], k[1], k[2], k[3]
             if '55' in error:
                 print(
                     f"У персонажа\t{name}\tв игре\t{title}\tнашлась ошибка с кодом:\t {error}.\tДата фиксации:\t {date}")
                 error = "Done"
                 date = "0000-00-00"
 
-            writer.writerow([title, name, error, date])  # добавляем в новый файл исправленную строку
+            writer.writerow(list(map(lambda x: x + ',', [title, name, error])) + [date])
+                                                           # добавляем в новый файл исправленную строку. Добавляем пробел
             next(reader)
 
 
