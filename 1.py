@@ -6,7 +6,7 @@ def main():
     Открывает файл, котоырй нужно исправить, исправляет его, и добавляет исправленные значения в файл game_new.txt
 
     """
-    with open('game.txt', encoding='utf-8') as f, open('game_new.txt', 'w', encoding='utf-8') as ff:
+    with open('game.txt', encoding='utf-8') as f, open('game_new.csv', 'w', encoding='utf-8') as ff:
         fieldnames = f.readline().strip().split('$')
 
         reader = csv.DictReader(f, delimiter='$', fieldnames=fieldnames)

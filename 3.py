@@ -8,7 +8,7 @@ def main():
         print(f.readline())
         reader = csv.reader(f, delimiter='$')
         list_of_games = []
-        names_games = sorted([(value[1], value[0]) for value in reader], key=lambda x: x[0]) #сортируем п оименам
+        names_games = sorted([(value[1], value[0]) for value in reader], key=lambda x: x[0]) #сортируем по именам
         for character_name, game in names_games:
             if name == character_name:
                 list_of_games.append(game)
