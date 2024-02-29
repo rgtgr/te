@@ -2,7 +2,9 @@ import csv
 
 
 def main():
-    name = input("Введите имя персонажа: ")
+    name_of_char = ''
+    while not name_of_char:
+        name = input("Введите имя персонажа: ")
 
     with open('game.txt', encoding="utf-8") as f:
 
